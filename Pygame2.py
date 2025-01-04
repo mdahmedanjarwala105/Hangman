@@ -10,55 +10,41 @@ pygame.init()
 width, height = 800, 600
 screen = pygame.display.set_mode((width, height)) # Creates Screen
 
+# Create Title and Icon
 pygame.display.set_caption("Hangman")
-# icon = pygame.image.load("SpaceInvader.png") # Loads image
-# pygame.display.set_icon(icon)
+icon = pygame.image.load("man.png") # Loads image
+pygame.display.set_icon(icon)
 
 # colors
-
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 # Button Variables
-
 RADIUS = 20
 GAP = 15
-letters = []
 startX = round((width - (RADIUS * 2 + GAP) * 13) / 2)
 startY = 400
 A = 65
 
-for i in range(26):
-    x = startX + GAP * 2 + ((RADIUS * 2 + GAP) * (i % 13))
-    y = startY + ((i // 13) * (GAP + RADIUS * 2))
-    letters.append([x, y, chr(A + i), True])
-    
+# Play Button Variables
 BIG_RADIUS = 50
 BIG_X_Axis = width // 2
 BIG_Y_Axis = 320
 
-
 # Fonts
-
 LETTER_FONT = pygame.font.Font("freesansbold.ttf", 32)
 WORD_FONT = pygame.font.Font("freesansbold.ttf", 52)
 TITLE_FONT = pygame.font.Font("freesansbold.ttf", 62)
 
-# Load Images
-
+# Load Hangman Images
 images = []
 
 for i in range(7):
     image = pygame.image.load("hangman" + str(i) + ".png")
     images.append(image)
     
-# Game Variables
 
-hangman_status = 0
-multiple_word = ["MUTLI", "TASK", "NICE", "HELLO"]
-words = random.choice(multiple_word)
-guessed = []
-
+# Function to draw the menu screen
 def drawBig():
     screen.fill((WHITE))  # WHITE background
     text = TITLE_FONT.render("HangMan Game", 1, BLACK)
@@ -69,7 +55,7 @@ def drawBig():
     pygame.display.update()
     
 
-# Drawing Function
+# Function to draw the game screen
 def draw():
     screen.fill((WHITE))  # WHITE background
     text = TITLE_FONT.render("HangMan Game", 1, BLACK)
@@ -98,6 +84,7 @@ def draw():
     pygame.display.update()
     
     
+# Function to display a message when the game is won or lost
 def display_message(message):
     pygame.time.delay(500)
     screen.fill(WHITE)
@@ -107,13 +94,15 @@ def display_message(message):
     pygame.time.delay(3000)
     
 
+# Main game function
 def main():
-    global hangman_status, guessed, words, letters
+    global hangman_status, guessed, words, letters, multiple_word
     hangman_status = 0
     guessed = []
+    multiple_word = ["MUTLI", "TASK", "NICE", "HELLO"]
     words = random.choice(multiple_word)
     
-    # Reset buttons visibility
+    # Buttons and It's visibility
     letters = []
     for i in range(26):
         x = startX + GAP * 2 + ((RADIUS * 2 + GAP) * (i % 13))
@@ -162,6 +151,7 @@ def main():
             return
             
 
+# Menu function to display the start screen
 def menu():
     FPS = 60
     clock = pygame.time.Clock()
@@ -181,6 +171,6 @@ def menu():
                 if distance < BIG_RADIUS:
                     main()
                     
-        drawBig()
+        drawBig()  # Draw the menu screen
         
 menu()  # Call the menu function to start the game
