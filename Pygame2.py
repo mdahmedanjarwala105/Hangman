@@ -1,6 +1,24 @@
 import pygame
 import math
 import random
+# import nltk --> this needs to be import so that we can download all the words in nltk
+from nltk.corpus import words
+
+# Download the words dataset if not already done
+# nltk.download('words') --> we are downloading all the words which are there in dictionary
+
+# Get all the words from the NLTK words corpus
+all_words = words.words()
+
+# Initialize an empty list to store filtered words
+WORDS = []
+
+# Iterate through each word in the all_words list
+for word in all_words:
+    # Check if the length of the word is between 3 and 7
+    if len(word) >= 3 and len(word) <= 7:
+        # Convert the word to uppercase and Append the uppercase word to the filtered_words list
+        WORDS.append(word.upper())
 
 # Initialize Pygame
 pygame.init()
@@ -99,8 +117,7 @@ def main():
     global hangman_status, guessed, words, letters, multiple_word
     hangman_status = 0
     guessed = []
-    multiple_word = ["MUTLI", "TASK", "NICE", "HELLO"]
-    words = random.choice(multiple_word)
+    words = random.choice(WORDS)
     
     # Buttons and It's visibility
     letters = []
