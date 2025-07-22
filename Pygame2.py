@@ -105,7 +105,7 @@ def draw():
 
 
 # Function to display a message when the game is won or lost
-def display_message(message):
+def display_message(message: str):
     pygame.time.delay(500)
     screen.fill(WHITE)
     text = WORD_FONT.render(message, 1, BLACK)
