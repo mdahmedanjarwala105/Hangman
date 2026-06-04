@@ -1,5 +1,6 @@
 {
   "python.defaultInterpreterPath": "/Users/mdahmedking6/.local/share/virtualenvs/Hangman-96w8WpDw",
-  "python-envs.defaultEnvManager": "ms-python.python:system",
-  "python-envs.pythonProjects": []
+  "python-envs.defaultEnvManager": "ms-python.python:pipenv",
+  "python.analysis.typeCheckingMode": "off",
+  "python.analysis.autoImportCompletions": false,
 }
